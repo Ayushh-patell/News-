@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import News_Item from "./components/News_Item";
 import { Link } from "react-router-dom";
+import Spinner from "./components/Spinner";
 
 export default function News(props) {
   if (props.active == "business") {
@@ -147,12 +148,13 @@ export default function News(props) {
             </nav>
           </div>         
           <div className="col-md-9">
+          
             {article_data && (
               <InfiniteScroll
                 dataLength={article_data.length}
                 next={fetchMoreData}
                 hasMore={article_data.length < totalData}
-                loader={<h4>Loading...</h4>}
+                loader={<Spinner/>}
               >
                 <div className="row">
                   {article_data.map((element, Index) => (
