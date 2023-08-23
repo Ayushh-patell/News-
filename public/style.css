@@ -1,0 +1,246 @@
+:root {
+    --main-clr: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+#main_nav {
+    z-index: 100;
+    background-color: white;
+}
+
+#caros {
+    height: 500px;
+}
+
+#caros .carousel-item,
+#caros .carousel-inner,
+#caros .carousel {
+    height: 100%;
+}
+
+@media screen and (max-width:990px) {
+    #caros {
+        height: auto;
+    }
+
+}
+
+.read-more {
+    position: relative;
+    z-index: 10;
+}
+
+/* .carousel-item img {
+    object-fit: contain !important;
+} */
+.carousel-control-prev {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5786647422640931) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.carousel-control-next {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.5786647422640931) 0%, rgba(0, 0, 0, 0) 100%);
+
+}
+
+.carousel-text {
+    position: absolute;
+    bottom: 1.25rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 1.25rem;
+    color: #fff;
+    text-shadow: 1px 1px 1px black;
+}
+
+.catagory {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.5s ease;
+    font-size: 20px;
+}
+
+.catagory ion-icon {
+    font-size: 69px;
+}
+
+.catagory:hover {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+}
+
+#business {
+    background: linear-gradient(0deg, rgba(121, 86, 253, 1) 20%, rgba(180, 162, 249, 1) 100%);
+}
+
+#entertainment {
+    background: linear-gradient(0deg, rgba(38, 146, 219, 1) 20%, rgba(149, 207, 247, 1) 100%);
+}
+
+#sports {
+    background: linear-gradient(0deg, rgba(45, 131, 117, 1) 20%, rgba(69, 216, 192, 1) 100%);
+}
+
+#science {
+    background: linear-gradient(0deg, rgba(167, 60, 86, 1) 20%, rgba(241, 94, 130, 1) 100%);
+}
+
+#health {
+    background: linear-gradient(0deg, rgba(63, 99, 187, 1) 20%, rgba(131, 167, 255, 1) 100%);
+}
+
+#technology {
+    background: linear-gradient(0deg, rgba(211, 73, 152, 1) 20%, rgba(255, 148, 209, 1) 100%);
+}
+
+.business {
+    border-left: rgba(121, 86, 253, 1);
+}
+
+.entertainment {
+    border-left: rgba(38, 146, 219, 1);
+}
+
+.sports {
+    border-left: rgba(45, 131, 117, 1);
+}
+
+.science {
+    border-left: rgba(167, 60, 86, 1);
+}
+
+.health {
+    border-left: rgba(63, 99, 187, 1);
+}
+
+.technology {
+    border-left: rgba(211, 73, 152, 1);
+}
+
+
+
+.nav-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-left-width: 5px;
+    border-left-style: solid;
+}
+
+.active {
+    cursor: auto;
+    pointer-events: none;
+    font-size: large;
+
+}
+
+.active a {
+    color: gray;
+}
+
+.active:hover {
+    color: grey;
+    border-left-width: 0px !important;
+    border-left-style: none !important;
+}
+
+.nav-item {
+    padding: 0.5rem;
+}
+
+@media screen and (max-width:767px) {
+    .nav-item {
+        padding: 0rem;
+    }
+}
+
+.news-card {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.card-detail {
+    color: #4e4e4e;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.card-detail span {
+    color: black;
+}
+
+.source {
+    margin-left: 1rem;
+    color: var(--main-clr) !important;
+    font-size: 1rem;
+}
+
+.news-card:hover {
+    transform: scale(0.97);
+    color: black;
+}
+
+.card-img-top {
+    max-height: 291px;
+    object-fit: cover;
+}
+
+.infinite-scroll-component {
+    padding: 1rem !important;
+}
+
+.carousel-text {
+    text-shadow: -1px 0 1px black, 0 1px 1px black, 1px 0 1px black, 0 -1px 1px black;
+}
+
+.carousel-img {
+    object-fit: cover;
+}
+
+#search-container {
+    max-height: 80vh;
+    width: 80%;
+    overflow: scroll;
+    background-color: whitesmoke;
+
+}
+
+@media screen and (max-width:440px) {
+    #search-container {
+        max-height: 65vh;
+    }
+}
+
+.search-spin {
+    display: none;
+}
+
+.carousel-text h5 {
+    font-size: 1rem;
+}
+
+.carousel-text p {
+    font-size: 12px;
+}
+
+#totop {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    z-index: 2000;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 25%;
+
+}
+.input-group-append .btn {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
