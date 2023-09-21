@@ -6,9 +6,22 @@ export default function Home() {
   const [article_data, setarticles_data] = useState(null);
   useEffect(() => {
     let url = `https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=03b69f2d55304315a88eb13de2017b7c&pageSize=8&page=1`;
-    fetch(url)
-      .then((result) => result.json())
-      .then((data) => setarticles_data(data.articles));
+    //get the news articles from the backend by a post method
+    fetch("http://localhost:5000/getNews", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        newsUrl: url,
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
+        setarticles_data(data.articles)
+      });
+    });
+    
   }, []);
 
   return (

@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Spinner() {
   return (
-    <div class="text-center">
-  <div class="spinner-border" role="status">
+    <div className="text-center">
+  <div className="spinner-border" role="status">
   </div>
 </div>
   )

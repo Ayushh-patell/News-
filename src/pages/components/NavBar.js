@@ -4,7 +4,7 @@ import News_Item from "./News_Item";
 
 export default function NavBar(props) {
   const [page, setpage] = useState(1);
-  const [totalData, settotalData] = useState(100);
+  const [totalData, settotalData] = useState(100);// initially 100 so infinite scroll gets started
   const [article_data, setarticles_data] = useState(null);
 
   const empty_cont = () => {
@@ -12,7 +12,8 @@ export default function NavBar(props) {
       setarticles_data(null);
     }
   };
-  const search_data = (e) => {
+
+  const search_data = (e) => { // search news article according to the search input
     let spinners =document.getElementsByClassName("search-spin")[0];
     spinners.style.display = "block";
     e.preventDefault();
@@ -20,9 +21,22 @@ export default function NavBar(props) {
       document.getElementById("search_input").value
     }&apiKey=03b69f2d55304315a88eb13de2017b7c`;
     if (document.getElementById("search_input").value) {
-      fetch(url)
-        .then((result) => result.json())
-        .then((data) => setarticles_data(data.articles));
+      //get the news articles from the backend by a post method
+      fetch("http://localhost:5000/getNews", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        newsUrl: url,
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
+        setarticles_data(data.articles)
+      });
+    });
+    
     } else {
       setarticles_data(null);
     }
@@ -33,15 +47,27 @@ export default function NavBar(props) {
     let url = `https://newsapi.org/v2/top-headlines?country=in&category=${
       props.active
     }&apiKey=03b69f2d55304315a88eb13de2017b7c&pageSize=15&page=${page + 1}`;
-    fetch(url)
-      .then((result) => result.json())
-      .then((data) => {
+//get the news articles from the backend by a post method
+    fetch("http://localhost:5000/getNews", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        newsUrl: url,
+      }),
+    }).then((response) => {
+      response.json().then((data) => { 
+//check whether the length of article array is not equal to totalResults form the api, if true than add more articles to the array else make the totalData state equal to the totalresults
         if (article_data.length !== data.totalResults) {
           setarticles_data(article_data.concat(data.articles));
         } else {
           settotalData(data.totalResults);
         }
       });
+    });
+
   };
   return (
     <>

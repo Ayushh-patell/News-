@@ -37,30 +37,53 @@ export default function News(props) {
     );
   }
 
-
   const [page, setpage] = useState(1);
   const [totalData, settotalData] = useState(100);
   const [article_data, setarticles_data] = useState(null);
   useEffect(() => {
     let url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.active}&apiKey=03b69f2d55304315a88eb13de2017b7c&pageSize=15&page=${page}`;
-    fetch(url)
-      .then((result) => result.json())
-      .then((data) => setarticles_data(data.articles));
+//get the news articles from the backend by a post method
+    fetch("http://localhost:5000/getNews", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        newsUrl: url,
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
+        setarticles_data(data.articles)
+      });
+    });
   }, []);
+
+
   let fetchMoreData = () => {
     setpage(page + 1);
     let url = `https://newsapi.org/v2/top-headlines?country=in&category=${
       props.active
     }&apiKey=03b69f2d55304315a88eb13de2017b7c&pageSize=15&page=${page + 1}`;
-    fetch(url)
-      .then((result) => result.json())
-      .then((data) => {
+//get the news articles from the backend by a post method
+    fetch("http://localhost:5000/getNews", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        newsUrl: url,
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
         if (article_data.length !== data.totalResults) {
           setarticles_data(article_data.concat(data.articles));
         } else {
           settotalData(data.totalResults);
         }
       });
+    });
   };
 
   return (
@@ -99,10 +122,7 @@ export default function News(props) {
                       : "entertainment"
                   }`}
                 >
-                  <Link
-                    className="nav-link"
-                    to="/entertainment"
-                  >
+                  <Link className="nav-link" to="/entertainment">
                     Entertainment
                   </Link>
                 </li>
@@ -146,15 +166,14 @@ export default function News(props) {
                 </li>
               </ul>
             </nav>
-          </div>         
+          </div>
           <div className="col-md-9">
-          
             {article_data && (
               <InfiniteScroll
                 dataLength={article_data.length}
                 next={fetchMoreData}
                 hasMore={article_data.length < totalData}
-                loader={<Spinner/>}
+                loader={<Spinner />}
               >
                 <div className="row">
                   {article_data.map((element, Index) => (
